@@ -1,0 +1,96 @@
+theory:
+  coupled_axion_theory.CoupledAxionClassy:
+    path: /home/imagination/axiclass/AxiCLASS_mod/AxiCLASS
+    python_path: /home/imagination/axiclass/yamlfiles
+    ignore_obsolete: True
+    extra_args:
+      scf_potential: axion
+      n_axion: 1.0
+      attractor_ic_scf: 'no'
+      do_shooting_scf: 'no'
+      scf_evolve_as_fluid: 'no'
+      scf_evolve_like_axionCAMB: 'no'
+      scf_has_perturbations: 'no'
+      use_big_theta_scf: 'no'
+      use_delta_scf_over_1plusw: 'no'
+      include_scf_in_delta_m: 'no'
+      loop_over_background_for_closure_relation: 'yes'
+      lensing: 'no'
+      precision_loop_over_background: 1e-2
+      DMDE_interaction: 0
+      evolver: 0
+      gauge: synchronous
+      background_verbose: 1
+      input_verbose: 1
+      non_linear: none
+      Omega_cdm: 0
+
+
+
+params:
+  H0:
+    prior: {min: 50, max: 80}
+    ref: 67.5
+    proposal: 1
+    latex: H_0
+  omega_b:
+    prior: {min: 0.018, max: 0.026}
+    ref: 0.02237
+    proposal: 0.0001
+    latex: \omega_b
+  n_s:
+    prior: {min: 0.8, max: 1.2}
+    ref: 0.9649
+    proposal: 0.004
+    latex: n_s
+  logA:
+    prior: {min: 2.5, max: 3.5}
+    ref: 3.044
+    proposal: 0.01
+    latex: \log(10^{10}A_s)
+    drop: true
+  A_s:
+    value: 'lambda logA: 1e-10*np.exp(logA)'
+    latex: A_s
+  tau_reio:
+    prior: {min: 0.01, max: 0.12}
+    ref: 0.0544
+    proposal: 0.005
+    latex: \tau_{\rm reio}
+  Omega_c:
+    prior: {min: 0.2, max: 0.4}
+    ref: 0.3046
+    proposal: 0.005
+    latex: \Omega_c
+  beta_axion:
+    prior: {min: 0, max: 0.15}
+    ref: 0.077
+    proposal: 0.005
+    latex: \beta
+  log_mphi_H0:
+    prior: {min: -1.5, max: 0.35}
+    ref: -0.346
+    proposal: 0.05
+    latex: \log(m_\phi/H_0)
+  delta_i:
+    prior: {min: 0.01, max: 1.57}
+    ref: 0.839
+    proposal: 0.05
+    latex: \delta_i
+debug: True
+likelihood:
+  sn.union3: null
+  bao.desi_dr2: null
+  planck_2018_lowl.TT: null
+  planck_2018_lowl.EE: null
+
+
+
+
+
+sampler:
+  evaluate:
+    override:
+
+output: /home/imagination/axiclass/yamlfiles/chains/ca
+

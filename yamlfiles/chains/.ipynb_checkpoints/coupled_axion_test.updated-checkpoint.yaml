@@ -1,0 +1,252 @@
+theory:
+  coupled_axion_theory.CoupledAxionClassy:
+    path: /home/imagination/axiclass/AxiCLASS_mod/AxiCLASS
+    speed: 0.2
+    stop_at_error: false
+    extra_args:
+      scf_potential: axion
+      n_axion: 1.0
+      attractor_ic_scf: 'no'
+      do_shooting_scf: 'yes'
+      scf_evolve_as_fluid: 'no'
+      scf_evolve_like_axionCAMB: 'no'
+      scf_has_perturbations: 'yes'
+      use_big_theta_scf: 'no'
+      use_delta_scf_over_1plusw: 'no'
+      include_scf_in_delta_m: 'no'
+      loop_over_background_for_closure_relation: 'yes'
+      precision_loop_over_background: 0.01
+      DMDE_interaction: 0
+      evolver: 0
+      gauge: synchronous
+      background_verbose: 0
+      input_verbose: 0
+      output_verbose: 0
+      non_linear: none
+      Omega_cdm: 0
+    ignore_obsolete: true
+    renames:
+      As: A_s
+      ns: n_s
+      nrun: alpha_s
+      nrunrun: beta_s
+      nt: n_t
+      ntrun: alpha_t
+      rdrag: rs_drag
+      omegak: Omega_k
+      omegal: Omega_Lambda
+      w: w0_fld
+      wa: wa_fld
+      omegabh2: omega_b
+      omegab: Omega_b
+      omegach2: omega_cdm
+      omegac: Omega_cdm
+      omegam: Omega_m
+      omegan: Omega_nu
+      tau: tau_reio
+      zrei: z_reio
+      deltazrei: reionization_width
+      helium_redshift: helium_fullreio_redshift
+      helium_delta_redshift: helium_fullreio_width
+      yhe: YHe
+      yheused: YHe
+    version: v3.3.0
+    python_path: /home/imagination/axiclass/yamlfiles
+    input_params:
+    - H0
+    - omega_b
+    - n_s
+    - A_s
+    - tau_reio
+    - Omega_c
+    - beta_axion
+    - log_mphi_H0
+    - delta_i
+    output_params: []
+likelihood:
+  sn.union3:
+    dataset_file: Union3/full_long.dataset
+    dataset_params: null
+    aliases:
+    - Union3
+    use_abs_mag: false
+    speed: 100
+    path: null
+    type: SN
+    stop_at_error: false
+    version: null
+    input_params: []
+    output_params: []
+  bao.desi_dr2:
+    path: null
+    measurements_file: bao_data/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt
+    cov_file: bao_data/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_cov.txt
+    rs_fid: 1
+    aliases:
+    - BAO
+    speed: 2000
+    type: BAO
+    rs_rescale: null
+    prob_dist: null
+    invcov_file: null
+    redshift: null
+    observable_1: null
+    observable_2: null
+    observable_3: null
+    grid_file: null
+    stop_at_error: false
+    version: null
+    input_params: []
+    output_params: []
+  planck_2018_lowl.TT:
+    lmin: 2
+    lmax: 29
+    type: CMB
+    aliases:
+    - lowT
+    speed: -1
+    stop_at_error: false
+    version: null
+    input_params: []
+    output_params: []
+  planck_2018_lowl.EE:
+    type: CMB
+    aliases:
+    - lowE
+    speed: -1
+    stop_at_error: false
+    version: null
+    input_params: []
+    output_params: []
+params:
+  H0:
+    prior:
+      min: 50
+      max: 80
+    ref: 67.5
+    proposal: 1
+    latex: H_0
+  omega_b:
+    prior:
+      min: 0.018
+      max: 0.026
+    ref: 0.02237
+    proposal: 0.0001
+    latex: \omega_b
+    renames:
+    - omegabh2
+  n_s:
+    prior:
+      min: 0.8
+      max: 1.2
+    ref: 0.9649
+    proposal: 0.004
+    latex: n_s
+    renames:
+    - ns
+  logA:
+    prior:
+      min: 2.5
+      max: 3.5
+    ref: 3.044
+    proposal: 0.01
+    latex: \log(10^{10}A_s)
+    drop: true
+  A_s:
+    value: 'lambda logA: 1e-10*np.exp(logA)'
+    latex: A_s
+    derived: true
+    renames:
+    - As
+  tau_reio:
+    prior:
+      min: 0.01
+      max: 0.12
+    ref: 0.0544
+    proposal: 0.005
+    latex: \tau_{\rm reio}
+    renames:
+    - tau
+  Omega_c:
+    prior:
+      min: 0.2
+      max: 0.4
+    ref: 0.3046
+    proposal: 0.005
+    latex: \Omega_c
+  beta_axion:
+    prior:
+      min: 0
+      max: 0.15
+    ref: 0.077
+    proposal: 0.005
+    latex: \beta
+  log_mphi_H0:
+    prior:
+      min: -1.5
+      max: 0.35
+    ref: -0.346
+    proposal: 0.05
+    latex: \log(m_\phi/H_0)
+  delta_i:
+    prior:
+      min: 0.01
+      max: 1.57
+    ref: 0.839
+    proposal: 0.05
+    latex: \delta_i
+  chi2__BAO:
+    latex: \chi^2_\mathrm{BAO}
+    derived: true
+  chi2__CMB:
+    latex: \chi^2_\mathrm{CMB}
+    derived: true
+  chi2__SN:
+    latex: \chi^2_\mathrm{SN}
+    derived: true
+sampler:
+  mcmc:
+    sampler_type: mcmc
+    supports_periodic_params: true
+    burn_in: 0
+    max_tries: 1000
+    covmat: null
+    covmat_params: null
+    proposal_scale: 2.4
+    output_every: 60s
+    learn_every: 40d
+    temperature: 1
+    learn_proposal: true
+    learn_proposal_Rminus1_max: 2.0
+    learn_proposal_Rminus1_max_early: 30.0
+    learn_proposal_Rminus1_min: 0.0
+    max_samples: .inf
+    Rminus1_stop: 0.01
+    Rminus1_cl_stop: 0.2
+    Rminus1_cl_level: 0.95
+    Rminus1_single_split: 4
+    measure_speeds: true
+    oversample_power: 0.4
+    oversample_thin: true
+    drag: false
+    blocking:
+    - - 1
+      - - H0
+        - omega_b
+        - n_s
+        - logA
+        - tau_reio
+        - Omega_c
+        - beta_axion
+        - log_mphi_H0
+        - delta_i
+    callback_function: null
+    callback_every: null
+    seed: null
+    check_every: null
+    oversample: null
+    drag_limits: null
+    fallback_covmat_scale: 4
+    version: 3.6.2
+output: coupled_axion_test
+version: 3.6.2
