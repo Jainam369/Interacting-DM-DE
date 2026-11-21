@@ -1,0 +1,29 @@
+Reading input parameters
+Reading input parameters
+Computing unknown input parameter 'log10_f_axion' using input parameter 'Omega_scf_shoot_fa'
+ -> matched budget equations by adjusting Omega_Lambda = -0.0367699
+ -> matched budget equations by adjusting Omega_Lambda = -0.0367699
+ -> matched budget equations by adjusting Omega_Lambda = -0.0367699
+ -> matched budget equations by adjusting Omega_Lambda = -0.0367699
+ -> matched budget equations by adjusting Omega_Lambda = -0.0367699
+ -> matched budget equations by adjusting Omega_Lambda = -0.0367699
+ -> matched budget equations by adjusting Omega_Lambda = -0.0367699
+ -> matched budget equations by adjusting Omega_Lambda = -0.0367699
+ -> matched budget equations by adjusting Omega_Lambda = -0.0367699
+ -> matched budget equations by adjusting Omega_Lambda = -0.0367699
+Computing unknown input parameters
+ -> found log10_f_axion = 3.91457713067684620611e-01
+ -> matched budget equations by adjusting Omega_Lambda = -0.0367699
+Running CLASS version v3.3.0
+Computing background
+ adjusted Omega_Lambda to incorporate the idm-chi contribution; new Omega_Lambda = -3.678897e-02 
+LOOP STATUS: is_axion_converged=1 is_idm_converged=1 do_final=1 final_done=0
+LOOP STATUS: is_axion_converged=1 is_idm_converged=1 do_final=1 final_done=1
+ -> age = 13.340434 Gyr
+ -> conformal age = 13514.665058 Mpc
+ -> H0 = 67.500000 km/s/Mpc
+ -> N_eff = 3.044 (summed over all species that are non-relativistic at early times) 
+ -> radiation/matter equality at z = 3832.812353
+    corresponding to conformal time = 100.165879 Mpc
+Computing sources
+Writing output files in output/CA_24_... 
